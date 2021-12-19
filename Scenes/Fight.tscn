@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/base.png" type="Texture" id=1]
+[ext_resource path="res://Instatiables/Mouse.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Fighting.gd" type="Script" id=3]
+[ext_resource path="res://Instatiables/MonsterSpawner.tscn" type="PackedScene" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[node name="Fight" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Base" type="Sprite" parent="."]
+self_modulate = Color( 0.488147, 0.096817, 0.917969, 1 )
+position = Vector2( 320, 152 )
+scale = Vector2( 9.125, 9.125 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+margin_right = 640.0
+margin_bottom = 360.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+margin_top = 288.0
+margin_right = 640.0
+margin_bottom = 360.0
+color = Color( 0.219608, 0.219608, 0.219608, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="CanvasLayer/Control"]
+margin_left = 24.0
+margin_top = 312.0
+margin_right = 88.0
+margin_bottom = 336.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+text = "Back"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mouse" parent="CanvasLayer" instance=ExtResource( 2 )]
+
+[node name="Monsters" parent="." instance=ExtResource( 4 )]
+position = Vector2( 128, 128 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 0, 136, 96, 160, 104, 128, 136, 88, 256, 64, 392, 64, 456, 72, 512, 88, 552, 120, 560, 160, 560, 160, 496, 224, 384, 248, 256, 248, 96, 160, 0, 136, 0, 360, 640, 360, 640, 0, 0, 0 )
+
+[connection signal="pressed" from="CanvasLayer/Control/Back" to="." method="_on_Back_pressed"]

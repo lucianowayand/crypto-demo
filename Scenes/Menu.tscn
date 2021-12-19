@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Instatiables/Mouse.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Menu.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Mouse" parent="CanvasLayer" instance=ExtResource( 1 )]
+z_index = 110
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+margin_right = 640.0
+margin_bottom = 360.0
+color = Color( 0.219608, 0.219608, 0.219608, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="CanvasLayer"]
+margin_left = 192.0
+margin_top = 96.0
+margin_right = 448.0
+margin_bottom = 160.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+text = "Start"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Criar" type="Button" parent="CanvasLayer"]
+margin_left = 192.0
+margin_top = 160.0
+margin_right = 448.0
+margin_bottom = 224.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+text = "Create new Monster"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Flush" type="Button" parent="CanvasLayer"]
+margin_left = 192.0
+margin_top = 224.0
+margin_right = 448.0
+margin_bottom = 288.0
+custom_styles/hover = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+text = "Flush"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="CanvasLayer/Criar" to="." method="_on_Criar_pressed"]
+[connection signal="pressed" from="CanvasLayer/Flush" to="." method="_on_Flush_pressed"]

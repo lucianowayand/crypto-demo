@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Instatiables/Room.gd" type="Script" id=1]
+
+[node name="Room" type="Area2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Training" type="Timer" parent="."]
+wait_time = 15.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 8, -32, 8, -32, 8, -32 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[connection signal="timeout" from="Training" to="." method="_on_Training_timeout"]
